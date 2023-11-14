@@ -1,2 +1,2 @@
-# techDegreeProject3
- My third tech degree project
+# Tech Degree Project 3
+This is my third tech degree project.
