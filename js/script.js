@@ -91,7 +91,16 @@ movie: ''
  * `getRandomQuote` function
 ***/
 
+function getRandomQuote(array) {
+  
+      let quoteIndex = (Math.floor(Math.random() * quotes.length) +1);
+      console.log(quoteIndex);
+      return quoteIndex;
+     
+  
+}
 
+getRandomQuote(quotes);
 
 /***
  * `printQuote` function
@@ -104,4 +113,4 @@ movie: ''
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+// document.getElementById('load-quote').addEventListener("click", printQuote, false);
