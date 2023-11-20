@@ -7,6 +7,7 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
+
 /*** 
  * `quotes` array 
 ***/
@@ -74,16 +75,16 @@ citation:'Demon Slayer'
  * `getRandomQuote` function
 ***/
 
-function getRandomQuote(array) {
+function getRandomQuote() {
   
-      let quoteIndex = (Math.floor(Math.random() * quotes.length));
+      const quoteIndex = (Math.floor(Math.random() * quotes.length));
         console.log(quoteIndex);
-    
-     let chosenQuote = (array[quoteIndex].quote);
-     let chosenSource = (array[quoteIndex].source);
-     let chosenCitation = (array[quoteIndex].citation);
-     let chosenYear = (array[quoteIndex].year);
-     let chosenEpisode = (array[quoteIndex].episode);
+
+     let chosenQuote = (quotes[quoteIndex].quote);
+     let chosenSource = (quotes[quoteIndex].source);
+     let chosenCitation = (quotes[quoteIndex].citation);
+     let chosenYear = (quotes[quoteIndex].year);
+     let chosenEpisode = (quotes[quoteIndex].episode);
      
      
      
@@ -99,7 +100,7 @@ let chosenQuoteObject = {
 return chosenQuoteObject;
 }
 
-console.log(getRandomQuote(quotes));
+console.log(getRandomQuote());
 
 
 /***
@@ -108,37 +109,41 @@ console.log(getRandomQuote(quotes));
 
 function printQuote(func) {
 
+
 let printChosenQuote = document.querySelector('.quote')
 let printChosenSource = document.querySelector('.source')
 
+    if (func.year === undefined && func.episode === undefined) {
 
-if (func.year === undefined && func.episode === undefined) {
+      printChosenQuote.innerHTML = `${func.quote}`
+      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>`
 
-  printChosenQuote.innerHTML = `${func.quote}`
-  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>`
+    } else if (func.episode === undefined) {
 
-} else if (func.episode === undefined) {
+      printChosenQuote.innerHTML = `${func.quote}`
+      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}`
 
-  printChosenQuote.innerHTML = `${func.quote}`
-  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}`
+    } else {
 
-} else {
+      printChosenQuote.innerHTML = `${func.quote}`
+      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}: ${func.episode}`
+    }
 
-  printChosenQuote.innerHTML = `${func.quote}`
-  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}: ${func.episode}`
 }
 
+
+const randomValue = () => Math.floor(Math.random() * 256);
+
+function colorChange(value) {
+  const color = `rgb(${value()}, ${value()}, ${value()})`;
+  return color;
 }
-
-
-
 
 
 setInterval(function() {
-  printQuote(getRandomQuote(quotes));
+  document.body.style.backgroundColor = colorChange(randomValue);
+  printQuote(getRandomQuote());
 }, 5000);
-
-
 
 
 /***
