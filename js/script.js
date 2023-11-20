@@ -116,7 +116,7 @@ if (func.year === undefined && func.episode === undefined) {
 
   printChosenQuote.innerHTML = `${func.quote}`
   printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>`
-r
+
 } else if (func.episode === undefined) {
 
   printChosenQuote.innerHTML = `${func.quote}`
@@ -131,8 +131,12 @@ r
 }
 
 
-printQuote(getRandomQuote(quotes));
 
+
+
+setInterval(function() {
+  printQuote(getRandomQuote(quotes));
+}, 5000);
 
 
 
