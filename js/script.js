@@ -14,20 +14,17 @@ const quotes = [
   {
 quote: 'Feel the rage. The powerful, pure rage of not being able to forgive will become your unswerving drive to take action.',
 source: 'Giyu',
-citation:'Demon Slayer',
-year:'Season 1'
+citation:'Demon Slayer'
 },
 {
   quote: 'No matter how many people you may lose, you have no choice but to go on living -- no matter how devastating the blows, maybe.',
   source: 'Tengen',
-  citation:'Demon Slayer',
-  year:'Season 2'
+  citation:'Demon Slayer'
   },
   {
     quote: 'It\'s okay to do things a little differently.',
     source: 'Tanjiro',
-    citation:'Demon Slayer',
-    year:'Season 3'
+    citation:'Demon Slayer'
     },
     {
       quote: 'Those who regretted their own actions, I would never trample over them. Because demons were once human too. Just like me, they were human too.',
@@ -45,25 +42,29 @@ year:'Season 1'
           quote: 'All I can do is work hard! That\'s the story of my life!',
           source: 'Tanjiro',
           citation:'Demon Slayer',
-          year:'Season 1'
+          year:'Season 1',
+          episode:'Episode 6'
           },
           {
             quote: 'If you are feeling disheartened, that you are somehow not enough, set your heart ablaze.',
             source: 'Tanjiro',
             citation:'Demon Slayer',
-            year:'Season 2'
+            year:'Season 2',
+            episode:'Episode 7'
             },
             {
               quote: 'If you can do one thing, hone it to perfection. Hone it to the utmost limit.',
               source: 'Jigoro',
               citation:'Demon Slayer',
-              year:'Season 3'
+              year:'Season 3',
+              episode:'Episode 8'
               },
               {
                 quote: 'I can do it. I know I can do it. I\'m the guy who gets it done, broken bones or not. No matter what, I can do it! I can fight!',
                 source: 'Tanjiro',
                 citation:'Demon Slayer',
-                year:'Season 4'
+                year:'Season 4',
+                episode:'Episode 9'
                 }
 
 ]
@@ -76,12 +77,13 @@ year:'Season 1'
 function getRandomQuote(array) {
   
       let quoteIndex = (Math.floor(Math.random() * quotes.length));
-      console.log(quoteIndex);
+        console.log(quoteIndex);
     
      let chosenQuote = (array[quoteIndex].quote);
      let chosenSource = (array[quoteIndex].source);
      let chosenCitation = (array[quoteIndex].citation);
      let chosenYear = (array[quoteIndex].year);
+     let chosenEpisode = (array[quoteIndex].episode);
      
      
      
@@ -89,31 +91,43 @@ let chosenQuoteObject = {
   quote: chosenQuote,
   source: chosenSource,
   citation: chosenCitation,
-  year: chosenYear
+  year: chosenYear,
+  episode: chosenEpisode
 }
 
-console.log(chosenQuoteObject)
 
 return chosenQuoteObject;
 }
 
-
+console.log(getRandomQuote(quotes));
 
 
 /***
  * `printQuote` function
 ***/
 
-function printQuote (func) {
-let printQuote = document.querySelector('p.quote')
-let printSource = document.querySelector('.source')
-let printCitation = document.querySelector('.citation')
-let printYear = document.querySelector('.year')
+function printQuote(func) {
 
- printQuote.innerHTML = `${getRandomQuote(quotes).quote}`
- printSource.innerHTML = `${getRandomQuote(quotes).source}, <i>${getRandomQuote(quotes).citation}</i>, ${getRandomQuote(quotes).year}`
-//  printCitation.innerHTML = ``
-//  printYear.innerHTML = ``
+let printChosenQuote = document.querySelector('.quote')
+let printChosenSource = document.querySelector('.source')
+
+
+if (func.year === undefined && func.episode === undefined) {
+
+  printChosenQuote.innerHTML = `${func.quote}`
+  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>`
+r
+} else if (func.episode === undefined) {
+
+  printChosenQuote.innerHTML = `${func.quote}`
+  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}`
+
+} else {
+
+  printChosenQuote.innerHTML = `${func.quote}`
+  printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}: ${func.episode}`
+}
+
 }
 
 
