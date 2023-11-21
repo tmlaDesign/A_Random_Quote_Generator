@@ -82,30 +82,12 @@ function colorChange(value) {
  * Then dot notation is used to store property values inside new variables making up a new object which is the returned value of the getRandomQuote function
 ***/
 
-function getRandomQuote() {
+const getRandomQuote = () => {
   
-      const quoteIndex = (Math.floor(Math.random() * quotes.length));
-        console.log(quoteIndex);
-
-     let chosenQuote = (quotes[quoteIndex].quote);
-     let chosenSource = (quotes[quoteIndex].source);
-     let chosenCitation = (quotes[quoteIndex].citation);
-     let chosenYear = (quotes[quoteIndex].year);
-     let chosenEpisode = (quotes[quoteIndex].episode);
-     
-     
-     
-let chosenQuoteObject = {
-  quote: chosenQuote,
-  source: chosenSource,
-  citation: chosenCitation,
-  year: chosenYear,
-  episode: chosenEpisode
-}
-
-
-return chosenQuoteObject;
-}
+      let quoteIndex = (Math.floor(Math.random() * quotes.length));
+      let chosenQuoteObject = quotes[quoteIndex];
+      return chosenQuoteObject;
+};
 
 console.log(getRandomQuote());
 
@@ -120,27 +102,23 @@ function printQuote() {
 
 let randomObject = getRandomQuote();
 
-let insertQuote = ``;
+let insertQuote = `<p class="quote">${randomObject.quote}</p>
+      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span>`;
 
 
-    if (randomObject.year === undefined && randomObject.episode === undefined) {
+    if (randomObject.episode) {
 
-      insertQuote = `<p class="quote">${randomObject.quote}</p>
-      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span></p>`
-
-
-    } else if (randomObject.episode === undefined) {
+      insertQuote += `<span class="year">${randomObject.year}</span><span class="year">${randomObject.episode}</span>`
 
 
-      insertQuote = `<p class="quote">${randomObject.quote}</p>
-      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span><span class="year">${randomObject.year}</span></p>`
+    } else if (randomObject.year) {
+
+
+      insertQuote += `<span class="year">${randomObject.year}</span>`
      
-    } else {
-
-      insertQuote = `<p class="quote">${randomObject.quote}</p>
-      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span><span class="year">${randomObject.year}</span><span class="year">${randomObject.episode}</span></p>`
-
     }
+
+    insertQuote += `</p>`
 
     document.getElementById('quote-box').innerHTML = insertQuote;
     document.body.style.backgroundColor = colorChange(randomValue);
