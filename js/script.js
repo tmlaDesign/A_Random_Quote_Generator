@@ -103,35 +103,43 @@ return chosenQuoteObject;
 console.log(getRandomQuote());
 
 
+
 /***
  * `printQuote` function
 ***/
 
-function printQuote(func) {
+function printQuote() {
+
+let randomObject = getRandomQuote();
+
+let insertQuote = ``;
 
 
-let printChosenQuote = document.querySelector('.quote')
-let printChosenSource = document.querySelector('.source')
+    if (randomObject.year === undefined && randomObject.episode === undefined) {
 
-    if (func.year === undefined && func.episode === undefined) {
+      insertQuote = `<p class="quote">${randomObject.quote}</p>
+      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span></p>`
 
-      printChosenQuote.innerHTML = `${func.quote}`
-      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>`
 
-    } else if (func.episode === undefined) {
+    } else if (randomObject.episode === undefined) {
 
-      printChosenQuote.innerHTML = `${func.quote}`
-      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}`
 
+      insertQuote = `<p class="quote">${randomObject.quote}</p>
+      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span><span class="year">${randomObject.year}</span></p>`
+     
     } else {
 
-      printChosenQuote.innerHTML = `${func.quote}`
-      printChosenSource.innerHTML = `${func.source}, <i>${func.citation}</i>, ${func.year}: ${func.episode}`
+      insertQuote = `<p class="quote">${randomObject.quote}</p>
+      <p class="source">${randomObject.source}<span class="citation">${randomObject.citation}</span><span class="year">${randomObject.year}</span><span class="year">${randomObject.episode}</span></p>`
+
     }
+
+    document.getElementById('quote-box').innerHTML = insertQuote; 
 
 }
 
 
+// The following code exists to make this project exceed expectations!
 const randomValue = () => Math.floor(Math.random() * 256);
 
 function colorChange(value) {
@@ -141,7 +149,7 @@ function colorChange(value) {
 
 setInterval(function() {
   document.body.style.backgroundColor = colorChange(randomValue);
-  printQuote(getRandomQuote());
+  printQuote();
 }, 5000);
 
 /***
