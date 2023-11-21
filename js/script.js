@@ -9,7 +9,7 @@ project 1 - A Random Quote Generator
 
 
 /*** 
- * `quotes` array 
+ * `quotes` array - stores 9 objects containing varying amounts of properties and values pertaining to the anime Demon Slayer
 ***/
 const quotes = [
   {
@@ -69,10 +69,17 @@ citation:'Demon Slayer'
                 }
 
 ]
+// The following code stores a random RGB value to be used inside the printQuote function and the setInterval function 
+const randomValue = () => Math.floor(Math.random() * 256);
 
+function colorChange(value) {
+  const color = `rgb(${value()}, ${value()}, ${value()})`;
+  return color;
+}
 
 /***
- * `getRandomQuote` function
+ * `getRandomQuote` function identifies a random number that is stored inside a variable, which is used to identify an object position in the quotes array
+ * Then dot notation is used to store property values inside new variables making up a new object which is the returned value of the getRandomQuote function
 ***/
 
 function getRandomQuote() {
@@ -105,7 +112,8 @@ console.log(getRandomQuote());
 
 
 /***
- * `printQuote` function
+ * `printQuote` function calls randomQuote function to use the random object stored inside var chosenQuoteObject.
+ * Three conditional statements are used to print out the supplied property values depending on which object properties exist
 ***/
 
 function printQuote() {
@@ -134,19 +142,13 @@ let insertQuote = ``;
 
     }
 
-    document.getElementById('quote-box').innerHTML = insertQuote; 
+    document.getElementById('quote-box').innerHTML = insertQuote;
+    document.body.style.backgroundColor = colorChange(randomValue);
 
 }
 
 
-// The following code exists to make this project exceed expectations!
-const randomValue = () => Math.floor(Math.random() * 256);
-
-function colorChange(value) {
-  const color = `rgb(${value()}, ${value()}, ${value()})`;
-  return color;
-}
-
+// The following code changes the background color and inserts a new quote every 5 seconds 
 setInterval(function() {
   document.body.style.backgroundColor = colorChange(randomValue);
   printQuote();
