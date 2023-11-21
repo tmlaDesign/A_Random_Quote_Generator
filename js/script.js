@@ -139,12 +139,10 @@ function colorChange(value) {
   return color;
 }
 
-
 setInterval(function() {
   document.body.style.backgroundColor = colorChange(randomValue);
   printQuote(getRandomQuote());
 }, 5000);
-
 
 /***
  * click event listener for the print quote button
